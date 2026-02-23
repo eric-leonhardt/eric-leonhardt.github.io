@@ -175,6 +175,94 @@
       line-height: 1.8;
     }
 
+    /* ── Projects ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .project-card {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 2rem;
+      align-items: center;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: all 0.35s ease;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .project-card:hover::before { transform: scaleX(1); }
+    .project-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+    }
+    .project-card .card-thumbnail {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .project-card .card-body {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .project-card .card-number {
+      font-family: var(--serif);
+      font-size: 0.78rem;
+      color: var(--text-tertiary);
+    }
+    .project-card h3 {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+    .project-card .card-body > p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+    .project-card .tags {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      margin-top: 0.4rem;
+    }
+    .project-card .tag {
+      font-size: 0.72rem;
+      padding: 0.25rem 0.7rem;
+      background: var(--accent-light);
+      color: var(--accent);
+      border-radius: 100px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    @media (max-width: 700px) {
+      .project-card {
+        grid-template-columns: 1fr;
+      }
+    }
+
     /* ── Contact ── */
     .contact-box {
       background: var(--card-bg);
@@ -310,19 +398,21 @@
     <p>Wharton MBA and incoming consultant at BCG. PhD in chemistry with five years of corporate R&D in tech manufacturing — optical connectivity, electronic materials, and applied AI/ML. Deeply passionate about turning fundamental understanding into real-world impact.</p>
   </section>
 
-
   <!-- Projects -->
   <section id="projects" class="reveal">
     <h2 class="section-title">Projects</h2>
     <div class="projects-grid">
-      <a href="https://github.com/eric-leonhardt/multifamily-screener" target="_blank" class="project-card" style="text-decoration: none; color: inherit;">
-        <span class="card-number">01</span>
-        <h3>Multifamily Investment Screener</h3>
-        <p>Interactive Python pipeline that uses LASSO regression to identify undervalued multifamily rental properties within a submarket. Point it at a dataset, select your features and local landmarks, and it runs cross-validated variable selection, partial R² importance ranking, and acquisition target identification — all from the command line.</p>
-        <div class="tags">
-          <span class="tag">Python</span>
-          <span class="tag">scikit-learn</span>
-          <span class="tag">geopandas</span>
+      <a href="https://github.com/eric-leonhardt/multifamily-screener" target="_blank" class="project-card">
+        <img src="map_example.jpeg" alt="Submarket map showing acquisition targets" class="card-thumbnail">
+        <div class="card-body">
+          <span class="card-number">01</span>
+          <h3>Multifamily Investment Screener</h3>
+          <p>Interactive Python pipeline that uses LASSO regression to identify undervalued multifamily rental properties within a submarket. Point it at a dataset, select your features and local landmarks, and it runs cross-validated variable selection, partial R² importance ranking, and acquisition target identification — all from the command line.</p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">scikit-learn</span>
+            <span class="tag">geopandas</span>
+          </div>
         </div>
       </a>
     </div>
