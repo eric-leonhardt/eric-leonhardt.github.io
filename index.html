@@ -178,24 +178,20 @@
     /* ── Projects ── */
     .projects-grid {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
       gap: 1.5rem;
       margin-top: 2rem;
     }
     .project-card {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 2rem;
-      align-items: center;
+      display: block;
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 1.5rem;
-      transition: all 0.35s ease;
+      overflow: hidden;
       text-decoration: none;
       color: inherit;
+      transition: all 0.35s ease;
       position: relative;
-      overflow: hidden;
     }
     .project-card::before {
       content: '';
@@ -206,6 +202,7 @@
       transform: scaleX(0);
       transform-origin: left;
       transition: transform 0.4s ease;
+      z-index: 1;
     }
     .project-card:hover::before { transform: scaleX(1); }
     .project-card:hover {
@@ -215,38 +212,35 @@
     }
     .project-card .card-thumbnail {
       width: 100%;
-      aspect-ratio: 16 / 10;
+      height: 220px;
       object-fit: cover;
-      border-radius: 8px;
-      border: 1px solid var(--border);
+      display: block;
+      border-bottom: 1px solid var(--border);
     }
     .project-card .card-body {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
+      padding: 1.6rem 1.8rem 1.8rem;
     }
     .project-card .card-number {
       font-family: var(--serif);
-      font-size: 0.78rem;
+      font-size: 0.82rem;
       color: var(--text-tertiary);
+      margin-bottom: 0.8rem;
+      display: block;
     }
     .project-card h3 {
       font-family: var(--serif);
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       font-weight: 400;
+      margin-bottom: 0.6rem;
       letter-spacing: -0.01em;
     }
-    .project-card .card-body > p {
+    .project-card p {
       color: var(--text-secondary);
       font-size: 0.9rem;
-      line-height: 1.65;
+      margin-bottom: 1.2rem;
+      line-height: 1.6;
     }
-    .project-card .tags {
-      display: flex;
-      gap: 0.4rem;
-      flex-wrap: wrap;
-      margin-top: 0.4rem;
-    }
+    .project-card .tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
     .project-card .tag {
       font-size: 0.72rem;
       padding: 0.25rem 0.7rem;
@@ -255,12 +249,6 @@
       border-radius: 100px;
       font-weight: 600;
       letter-spacing: 0.02em;
-    }
-
-    @media (max-width: 700px) {
-      .project-card {
-        grid-template-columns: 1fr;
-      }
     }
 
     /* ── Contact ── */
@@ -346,6 +334,7 @@
       nav .nav-inner { padding: 0.9rem 1.4rem; }
       nav .nav-links { gap: 1.4rem; }
       .contact-box { padding: 2rem; }
+      .projects-grid { grid-template-columns: 1fr; }
       footer { flex-direction: column; gap: 1rem; text-align: center; }
     }
   </style>
@@ -402,17 +391,19 @@
   <section id="projects" class="reveal">
     <h2 class="section-title">Projects</h2>
     <div class="projects-grid">
-      <a href="https://github.com/eric-leonhardt/multifamily-screener" target="_blank" class="project-card">
-        <img src="map_example.jpeg" alt="Submarket map showing acquisition targets" class="card-thumbnail">
+      <a href="https://multifamily-screener-ai.streamlit.app/" target="_blank" class="project-card">
+        <img src="map_example.jpeg" alt="Submarket map showing acquisition targets colored by model residual" class="card-thumbnail">
         <div class="card-body">
           <span class="card-number">01</span>
           <h3>Multifamily Investment Screener</h3>
-          <p>Interactive Python pipeline that uses LASSO regression to identify undervalued multifamily rental properties within a submarket. Point it at a dataset, select your features and local landmarks, and it runs cross-validated variable selection, partial R² importance ranking, and acquisition target identification — all from the command line.</p>
+          <p>AI-powered tool for identifying undervalued multifamily rental properties. Upload your submarket data and Claude walks you through selecting property attributes and local amenities as value anchors. Under the hood: cross-validated LASSO regression with automatic feature selection, variable importance ranking, and residual-based target identification. On the surface: plain-English explanations of where the opportunities are and why.</p>
           <div class="tags">
             <span class="tag">Python</span>
+            <span class="tag">Claude API</span>
+            <span class="tag">Streamlit</span>
             <span class="tag">scikit-learn</span>
-            <span class="tag">geopandas</span>
           </div>
+          <span style="display: inline-flex; align-items: center; gap: 0.3rem; margin-top: 0.6rem; font-size: 0.82rem; font-weight: 600; color: #c8552d;">Try live demo →</span>
         </div>
       </a>
     </div>
